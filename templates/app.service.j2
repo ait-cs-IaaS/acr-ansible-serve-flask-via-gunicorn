@@ -1,0 +1,16 @@
+[Unit]
+Description={{ app_description }}
+After=network.target
+
+[Service]
+Type=notify
+User={{ app_user }}
+RuntimeDirectory={{ app_directory }}
+WorkingDirectory={{ app_basepath }}/
+ExecStart={{ app_service_execstart }}
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target
